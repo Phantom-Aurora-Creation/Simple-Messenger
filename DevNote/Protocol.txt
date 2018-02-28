@@ -7,8 +7,8 @@ enum type {
 	Handshake, Minecraft, QQ, Command, Error
 }
 
-enum name when type.Handshake {
-	QQ, Plugin, MCMOD, Console
+enum name when type.Handshake or type.Error {
+	CoolQ, Plugin, MCMOD, Console
 }
 
 普通的消息：
