@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SimpleMessager
 {
@@ -30,11 +31,11 @@ namespace SimpleMessager
         /// <param name="type">此处只能为MsgType.Handshake</param>
         /// <param name="name">发送端</param>
         /// <param name="pw">授权码</param>
-        /// <param name="st">时间戳</param>
+        /// <param name="ts">时间戳</param>
         /// <returns>完整的握手消息</returns>
-        public static string MessageMaker(MsgType type, SendName name, string pw, string st)
+        public static string MessageMaker(MsgType type, SendName name, string pw, string ts)
         {
-            string accesscode = Md5_32(st + Md5_32(pw));
+            string accesscode = Md5_32(ts + Md5_32(pw));
             string strOut = "{\"type\":\"Handshake\", \"name\":\"" + name + "\", \"msg\":\"" + accesscode + "\"}";
             return strOut;
         }
@@ -87,10 +88,10 @@ namespace SimpleMessager
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        private static string Md5_32(string input)
+        public static string Md5_32(string input)
         {
-            System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create();
-            byte[] data = md5.ComputeHash(System.Text.Encoding.Default.GetBytes(input));
+            MD5 md5 = MD5.Create();
+            byte[] data = md5.ComputeHash(Encoding.Default.GetBytes(input));
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < data.Length; i++)
             {

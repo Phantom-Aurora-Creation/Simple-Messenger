@@ -4,7 +4,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+
+using static SimpleMessager.Main;
 
 namespace SimpleMessager
 {
@@ -35,12 +38,37 @@ namespace SimpleMessager
             return suc;
         }
 
+        public static void Recive()
+        {
+            Thread thread = new Thread(ReciveWorker);
+            thread.IsBackground = true;
+            thread.Start(socket);
+        }
+
+        private static void ReciveWorker(object o)
+        {
+            Socket send = o as Socket;
+            while (Main.recivable)
+            {
+                byte[] buffer = new byte[1024 * 1024 * 2];
+                int effective = send.Receive(buffer);
+                if (effective == 0)
+                {
+                    break;
+                }
+                string str = Encoding.Default.GetString(buffer, 0, effective);
+                //Todo
+                //Main.ListBoxLog.Items.Add();
+
+            }
+        }
+
         private static string TimeStamp()
         {
-            string Y = DateTime.Now.Year.ToString();
+            string y = DateTime.Now.Year.ToString();
             string M = DateTime.Now.Month.ToString();
             string d = DateTime.Now.Day.ToString();
-            string h = DateTime.Now.Hour.ToString();
+            string H = DateTime.Now.Hour.ToString();
             string m = DateTime.Now.Minute.ToString();
 
             switch (M){
@@ -76,7 +104,7 @@ namespace SimpleMessager
                     break;
             }
 
-            return Y + M + d + h + m;
+            return y + M + d + H + m;
         }
     }
 }

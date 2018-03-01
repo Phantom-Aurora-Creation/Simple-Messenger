@@ -1,10 +1,10 @@
-Author: Ray
-Date: 2018.02.28 16:42
-Version: V2
+Author: Romonov, Ray
+Date: 2018.03.01 20:41
+Version: V3
 
 消息协议：
 enum type {
-	Handshake, Minecraft, QQ, Command, Error
+	Handshake, Server, Minecraft, QQ, Command, Error
 }
 
 enum name when type.Handshake or type.Error {
@@ -22,11 +22,16 @@ enum name when type.Handshake or type.Error {
 
 {"type":"QQ", "name":"不写完UltraMixer不改名", "msg":"XiaoC is a potato."}
 
+{"type":"Server", "name":"", "msg":"Recived"}
+
 握手消息：
 {"type":"Handshake", "name":"Console", "msg":"%授权码%"}
 
 授权码：
-MD5(YYYYMMDDHHmm);
+lng: 32bytes
+timeStamp = yyyyMMddHHmm
+accessCode is a password (def:SimpleMessager)
+md5(timeStamp + md5(accessCode))
 
 日志协议：
 文件名：YYYY-MM-DD-n.log
@@ -34,4 +39,3 @@ MD5(YYYYMMDDHHmm);
 
 举个栗子：
 [2018-02-27][19:01:59][Minecraft]Romonov:XiaoC is a potato.
-
