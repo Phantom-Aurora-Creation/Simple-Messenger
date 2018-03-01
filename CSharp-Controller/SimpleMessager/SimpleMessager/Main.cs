@@ -14,10 +14,21 @@ namespace SimpleMessager
 {
     public partial class Main : Form
     {
+        public string timeStamp = "201803011632";
+        public string password = "SimpleMessager";
+
         public Main()
         {
             InitializeComponent();
+            
             //Todo
+            timeStamp = SocketWorker.Connect("server.r-ay.cn", 33663);
+            string ptr = Messager.MessageMaker(MsgType.Handshake, SendName.Console, password, timeStamp);
+            SocketWorker.Post(ptr);
+            //MessageBox.Show(st);
+            //MessageBox.Show(ptr);
+
+            Console.ReadLine();
         }
     }
 }
