@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.ListBoxLog = new System.Windows.Forms.ListBox();
-            this.NotificAPI = new System.Windows.Forms.LinkLabel();
+            this.MorepushAPI = new System.Windows.Forms.LinkLabel();
             this.TestBoxInput = new System.Windows.Forms.TextBox();
             this.ButtonSend = new System.Windows.Forms.Button();
             this.ButtonSettings = new System.Windows.Forms.Button();
@@ -44,15 +44,15 @@
             this.ListBoxLog.Size = new System.Drawing.Size(429, 292);
             this.ListBoxLog.TabIndex = 0;
             // 
-            // NotificAPI
+            // MorepushAPI
             // 
-            this.NotificAPI.AutoSize = true;
-            this.NotificAPI.Location = new System.Drawing.Point(457, 340);
-            this.NotificAPI.Name = "NotificAPI";
-            this.NotificAPI.Size = new System.Drawing.Size(65, 12);
-            this.NotificAPI.TabIndex = 1;
-            this.NotificAPI.TabStop = true;
-            this.NotificAPI.Text = "NotificAPI";
+            this.MorepushAPI.AutoSize = true;
+            this.MorepushAPI.Location = new System.Drawing.Point(12, 340);
+            this.MorepushAPI.Name = "MorepushAPI";
+            this.MorepushAPI.Size = new System.Drawing.Size(71, 12);
+            this.MorepushAPI.TabIndex = 1;
+            this.MorepushAPI.TabStop = true;
+            this.MorepushAPI.Text = "MorepushAPI";
             // 
             // TestBoxInput
             // 
@@ -69,6 +69,7 @@
             this.ButtonSend.TabIndex = 3;
             this.ButtonSend.Text = "Send";
             this.ButtonSend.UseVisualStyleBackColor = true;
+            this.ButtonSend.Click += new System.EventHandler(this.ButtonSend_Click);
             // 
             // ButtonSettings
             // 
@@ -87,20 +88,21 @@
             this.Controls.Add(this.ButtonSettings);
             this.Controls.Add(this.ButtonSend);
             this.Controls.Add(this.TestBoxInput);
-            this.Controls.Add(this.NotificAPI);
+            this.Controls.Add(this.MorepushAPI);
             this.Controls.Add(this.ListBoxLog);
             this.Name = "Main";
             this.Text = "Main";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.LinkLabel NotificAPI;
+        private System.Windows.Forms.LinkLabel MorepushAPI;
         private System.Windows.Forms.TextBox TestBoxInput;
         private System.Windows.Forms.Button ButtonSend;
         private System.Windows.Forms.Button ButtonSettings;
-        private System.Windows.Forms.ListBox ListBoxLog;
+        public System.Windows.Forms.ListBox ListBoxLog;
     }
 }

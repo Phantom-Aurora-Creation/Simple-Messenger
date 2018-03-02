@@ -6,8 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
-using static SimpleMessager.Main;
+using System.Windows.Forms;
 
 namespace SimpleMessager
 {
@@ -16,6 +15,7 @@ namespace SimpleMessager
         public static string suc = "successful";
 
         private static Socket socket = new Socket(SocketType.Stream, ProtocolType.Tcp);
+        private static Thread thread = new Thread(ReciveWorker);
 
         private static void Init() { }
 
@@ -34,15 +34,29 @@ namespace SimpleMessager
         public static string Post(string str)
         {
             byte[] buffer = Encoding.Default.GetBytes(str);
-            socket.Send(buffer);
+            try
+            {
+                socket.Send(buffer);
+            }
+            catch(Exception ex)
+            {
+                return Convert.ToString(ex);
+            }
+
             return suc;
         }
 
         public static void Recive()
         {
-            Thread thread = new Thread(ReciveWorker);
             thread.IsBackground = true;
             thread.Start(socket);
+        }
+
+        public static void Exit()
+        {
+            //MessageBox.Show("");
+            thread.Abort();
+            socket.Close();
         }
 
         private static void ReciveWorker(object o)
@@ -54,11 +68,13 @@ namespace SimpleMessager
                 int effective = send.Receive(buffer);
                 if (effective == 0)
                 {
-                    break;
+                    //break;
                 }
                 string str = Encoding.Default.GetString(buffer, 0, effective);
                 //Todo
                 //Main.ListBoxLog.Items.Add();
+                //ListBox log = new Main.ListBoxLog();
+                MessageBox.Show(str);
 
             }
         }
@@ -99,6 +115,40 @@ namespace SimpleMessager
                 case "8":
                 case "9":
                     d = "0" + d;
+                    break;
+                default:
+                    break;
+            }
+
+            switch (H)
+            {
+                case "1":
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                case "9":
+                    H = "0" + H;
+                    break;
+                default:
+                    break;
+            }
+
+            switch (m)
+            {
+                case "1":
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                case "9":
+                    m = "0" + m;
                     break;
                 default:
                     break;

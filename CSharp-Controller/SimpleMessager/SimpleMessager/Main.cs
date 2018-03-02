@@ -27,7 +27,7 @@ namespace SimpleMessager
             //Todo
             timeStamp = SocketWorker.Connect("server.r-ay.cn", 33663);
             
-            string ptr = MessageMaker(MsgType.Handshake, SendName.Console, password, timeStamp);
+            string ptr = MessageMaker(MsgType.Handshake, SendName.Plugin, password, timeStamp);
             SocketWorker.Post(ptr);
             //MessageBox.Show(timeStamp);
             //MessageBox.Show(ptr);
@@ -37,10 +37,38 @@ namespace SimpleMessager
 
         }
 
+        private void ButtonSend_Click(object sender, EventArgs e)
+        {
+            string str = MessageMaker(MsgType.Minecraft, "name", TestBoxInput.Text);
+            string status = SocketWorker.Post(str);
+            if(status == "successful")
+            {
+                //MessageBox.Show("Successful!");
+            }
+            else
+            {
+                MessageBox.Show(status);
+            }
+
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult status = MessageBox.Show("真的要退出吗？", "森破信使 SimpleMessager", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (status == DialogResult.Cancel)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                SocketWorker.Exit();
+            }
+        }
+
         //XXX
         /*public static void ListBoxLogModifier()
         {
-            Main.ListBoxLog log = new ListBoxLog();
+            ListBox log = new ListBoxLog();
             object o = 0;
             ListBoxLog.Items.Add(o);
         }*/
