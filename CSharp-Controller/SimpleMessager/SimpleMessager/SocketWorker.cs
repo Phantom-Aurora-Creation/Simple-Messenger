@@ -8,29 +8,56 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using static SimpleMessager.Main;
+
 namespace SimpleMessager
 {
     class SocketWorker
     {
-        public static string suc = "successful";
-
+        /// <summary>
+        /// 初始化 Socket 实体
+        /// </summary>
         private static Socket socket = new Socket(SocketType.Stream, ProtocolType.Tcp);
+
+        /// <summary>
+        /// 初始化 Thread 实体
+        /// </summary>
         private static Thread thread = new Thread(ReciveWorker);
 
+        /// <summary>
+        /// 暂无用途
+        /// </summary>
         private static void Init() { }
 
+        /// <summary>
+        /// 连接到某个网络地址
+        /// </summary>
+        /// <param name="ip">目标IP地址</param>
+        /// <param name="port">目标的端口号</param>
+        /// <returns>连接建立的时间，格式：yyyyMMddHHmm</returns>
         public static string Connect(IPAddress ip, int port)
         {
             socket.Connect(ip, port);
             return TimeStamp();
         }
 
+        /// <summary>
+        /// 连接到某个网络地址
+        /// </summary>
+        /// <param name="host">目标域名</param>
+        /// <param name="port">目标的端口号</param>
+        /// <returns>连接建立的时间，格式：yyyyMMddHHmm</returns>
         public static string Connect(string host, int port)
         {
             socket.Connect(host, port);
             return TimeStamp();
         }
 
+        /// <summary>
+        /// 向已连接的网络地址发送消息
+        /// </summary>
+        /// <param name="str">要发送的消息</param>
+        /// <returns>若成功则返回 Main.success ，若失败则返回错误</returns>
         public static string Post(string str)
         {
             byte[] buffer = Encoding.Default.GetBytes(str);
@@ -43,15 +70,21 @@ namespace SimpleMessager
                 return Convert.ToString(ex);
             }
 
-            return suc;
+            return Main.success;
         }
 
+        /// <summary>
+        /// 建立新的线程接收已连接的网络地址发来的消息
+        /// </summary>
         public static void Recive()
         {
             thread.IsBackground = true;
             thread.Start(socket);
         }
 
+        /// <summary>
+        /// 终止接收线程，关闭Socket
+        /// </summary>
         public static void Exit()
         {
             //MessageBox.Show("");
@@ -59,9 +92,14 @@ namespace SimpleMessager
             socket.Close();
         }
 
+        /// <summary>
+        /// 接收线程的执行体
+        /// </summary>
+        /// <param name="o"></param>
         private static void ReciveWorker(object o)
         {
             Socket send = o as Socket;
+            int i = 0;
             while (Main.recivable)
             {
                 byte[] buffer = new byte[1024 * 1024 * 2];
@@ -72,13 +110,18 @@ namespace SimpleMessager
                 }
                 string str = Encoding.Default.GetString(buffer, 0, effective);
                 //Todo
-                //Main.ListBoxLog.Items.Add();
-                //ListBox log = new Main.ListBoxLog();
+                
+                ListBox ListBoxLog = new ListBox();
+                ListBoxLog.Items.Add(i);
                 MessageBox.Show(str);
 
+                i++;
             }
         }
-
+        /// <summary>
+        /// 获取时间戳
+        /// </summary>
+        /// <returns>时间戳，格式：yyyyMMddHHmm</returns>
         private static string TimeStamp()
         {
             string y = DateTime.Now.Year.ToString();
