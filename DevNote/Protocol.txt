@@ -1,6 +1,8 @@
 Author: Romonov, Ray
-Date: 2018.03.01 20:41
-Version: V3
+Date: 2018.03.17 19:30
+Version: V5
+
+def 
 
 消息协议：
 enum type {
@@ -28,13 +30,14 @@ enum name when type.Handshake or type.Error {
 {"type":"Handshake", "name":"Console", "msg":"%授权码%"}
 
 授权码：
-lng: 32bytes
-timeStamp = yyyyMMddHHmm
-accessCode is a password (def:SimpleMessager)
+def lng: 32bytes
+def timeStamp = yyyyMMddHHmm
+accessCode is a password (def:SimpleMessenger)
 md5(timeStamp + md5(accessCode))
 
 日志协议：
 文件名：YYYY-MM-DD-n.log
+路径：%MinecraftServer%/Logs/SimpleMessenger/
 内容：[YYYY-MM-DD][hh:mm:ss][type]name:msg
 
 举个栗子：
