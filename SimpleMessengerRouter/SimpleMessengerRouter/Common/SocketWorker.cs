@@ -20,12 +20,19 @@ namespace SimpleMessengerRouter.Common
         public void Init(int Port)
         {
             socket.Bind(new IPEndPoint(IPAddress.Any, Port));
+            Logger.Info($"Listener bind at localhost:{Port}.");
         }
 
-        public void Listen(int Num)
+        public void Start(int Num)
         {
             socket.Listen(Num);
+            Logger.Info($"Listener is listening now, max connection is {Num}");
         }
 
+        public void Stop()
+        {
+            socket.Close();
+            Logger.Info("Listener stopped.");
+        }
     }
 }
