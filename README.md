@@ -1,4 +1,5 @@
 # 森破信使 
+![poweredby](https://s.r-ay.cn/svg.php?color=FF69B4&title=提供支持&content=幻创Indev)
 让QQ群和MC服务器或玩家的客户端之间消息互通。 
 
 ### 介绍 
