@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimpleMessengerRouter.Common
 {
-    class MyEnum
+    class Enum
     {
         public enum ClientType
         {

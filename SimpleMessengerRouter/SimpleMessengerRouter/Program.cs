@@ -13,7 +13,7 @@ namespace SimpleMessengerRouter
         public static int Port = 37201;
         public static int MaxConnection = 233;
 
-        public static Dictionary<MyEnum.ClientType, Socket> Clients = new Dictionary<MyEnum.ClientType, Socket>();
+        public static Dictionary<string, Socket> Clients = new Dictionary<string, Socket>();
 
         public static bool IsRunning = false;
 

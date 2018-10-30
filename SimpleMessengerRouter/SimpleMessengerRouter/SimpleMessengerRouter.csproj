@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\AccessCode.cs" />
-    <Compile Include="Common\MyEnum.cs" />
+    <Compile Include="Common\Enum.cs" />
     <Compile Include="Common\Logger.cs" />
     <Compile Include="Common\SocketWorker.cs" />
     <Compile Include="Common\Struct.cs" />

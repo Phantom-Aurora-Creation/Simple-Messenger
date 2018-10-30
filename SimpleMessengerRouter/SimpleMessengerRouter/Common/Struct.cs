@@ -5,12 +5,12 @@
         public struct Message
         {
             int Ver;
-            MyEnum.MsgType Type;
+            Enum.MsgType Type;
             string Time;
             int ID;
             int Parts;
             int AllParts;
-            MyEnum.ClientType From;
+            Enum.ClientType From;
             string Uid;
             string Name;
             string Msg;
