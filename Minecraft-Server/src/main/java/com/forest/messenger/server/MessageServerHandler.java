@@ -16,11 +16,13 @@ public class MessageServerHandler extends ChannelHandlerAdapter{
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
 		channels.add(ctx.channel());
 		super.channelActive(ctx);
+		
 	}
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 		// TODO Auto-generated method stub
 		channels.writeAndFlush(msg);
+		System.out.println(channels.size());
 	}
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
