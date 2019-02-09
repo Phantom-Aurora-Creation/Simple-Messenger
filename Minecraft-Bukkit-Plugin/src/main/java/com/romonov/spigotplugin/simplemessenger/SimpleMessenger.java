@@ -1,6 +1,5 @@
 package com.romonov.spigotplugin.simplemessenger;
 
-import org.bukkit.plugin.PluginLogger;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,8 +12,8 @@ public final class SimpleMessenger extends JavaPlugin
         getLogger().info("Simple messenger enabled!");
 
         PluginManager pluginManager = getServer().getPluginManager();
-        ListenerChat listenerChat = new ListenerChat(this);
-        pluginManager.registerEvents(listenerChat, this);
+        ChatListener chatListener = new ChatListener(this);
+        pluginManager.registerEvents(chatListener, this);
     }
 
     @Override

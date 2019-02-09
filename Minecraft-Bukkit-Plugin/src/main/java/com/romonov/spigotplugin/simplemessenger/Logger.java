@@ -10,6 +10,8 @@ public class Logger
 {
     public static void Write(String msg)
     {
+        SimpleMessenger.getPlugin(SimpleMessenger.class).getLogger().info(msg);
+
         String time = "";
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("[yyyy-MM-dd][hh:mm:ss]");
