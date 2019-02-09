@@ -1,0 +1,5 @@
+name: Simple Messenger
+version: ${project.version}
+main: com.romonov.spigotplugin.simplemessenger.SimpleMessenger
+authors: [Romonov, LittleC]
+description: Exchanger of QQ Group and Minecraft Server messages.
