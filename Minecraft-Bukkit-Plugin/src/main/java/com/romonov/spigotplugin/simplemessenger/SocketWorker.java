@@ -32,7 +32,7 @@ public class SocketWorker
     {
         try
         {
-            byte[] t = new byte[20480];
+            byte[] t = new byte[1024 * 1024];
             socket.getInputStream().read(t);
             String msg = new String(t);
             msg.trim();
@@ -40,7 +40,6 @@ public class SocketWorker
         }
         catch (Exception ex)
         {
-            ex.printStackTrace();
             return "";
         }
     }

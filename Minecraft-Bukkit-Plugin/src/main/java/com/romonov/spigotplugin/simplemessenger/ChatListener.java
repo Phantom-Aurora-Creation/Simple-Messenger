@@ -7,6 +7,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.awt.*;
+
 public class ChatListener implements Listener
 {
     SocketWorker socket = null;
@@ -14,7 +16,7 @@ public class ChatListener implements Listener
     public ChatListener(JavaPlugin plugin)
     {
         SimpleMessenger.getPlugin(SimpleMessenger.class).getLogger().info("Initializing listener.");
-        socket = new SocketWorker("116.31.124.36", 33663);
+        socket = new SocketWorker("60.10.33.200", 33663);
         Handshake("85662271");
 
         Thread thread = new Thread(this::OnReceive);
@@ -36,8 +38,19 @@ public class ChatListener implements Listener
             if (msg != "")
             {
                 Gson gson = new Gson();
-                Message message = gson.fromJson(msg, Message.class);
-                Bukkit.getServer().broadcastMessage("[QQ]" + message.Name + ":" + message.Msg);
+                Message message = gson.fromJson(msg.trim(), Message.class);
+                switch (message.Type)
+                {
+                    case msg:
+                        Bukkit.getServer().broadcastMessage("[" + message.From+ "]" + message.Name + ": " + message.Msg);
+                        break;
+                    case img:
+                        break;
+                    case control:
+                    case error:
+                    default:
+                        continue;
+                }
             }
             else
             {

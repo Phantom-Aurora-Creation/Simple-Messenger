@@ -10,7 +10,7 @@ public class ProtocolWorker {
     {
         String time = "";
         Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddhhmm");
         time = simpleDateFormat.format(date);
 
         Message message = new Message();

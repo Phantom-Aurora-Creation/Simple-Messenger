@@ -1,4 +1,4 @@
-name: Simple Messenger
+name: SimpleMessenger
 version: ${project.version}
 main: com.romonov.spigotplugin.simplemessenger.SimpleMessenger
 authors: [Romonov, LittleC]
