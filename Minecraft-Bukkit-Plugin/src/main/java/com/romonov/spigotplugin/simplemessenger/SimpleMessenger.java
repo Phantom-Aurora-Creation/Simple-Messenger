@@ -12,7 +12,7 @@ public final class SimpleMessenger extends JavaPlugin
         getLogger().info("Simple messenger enabled!");
 
         PluginManager pluginManager = getServer().getPluginManager();
-        ChatListener chatListener = new ChatListener(this);
+        ChatListener chatListener = new ChatListener();
         pluginManager.registerEvents(chatListener, this);
     }
 

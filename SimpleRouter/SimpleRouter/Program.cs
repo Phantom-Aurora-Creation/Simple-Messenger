@@ -124,7 +124,7 @@ namespace SimpleRouter
 
             msg.Ver = 9;
             msg.Type = msgType;
-            msg.Time = DateTime.Now.ToString("yyyyMMddHHmm");
+            msg.Time = DateTime.Now.ToString("yyyyMMddHHmmss");
             msg.ID = 1;
             msg.Parts = 1;
             msg.AllParts = 1;

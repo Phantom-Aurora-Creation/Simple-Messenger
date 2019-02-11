@@ -5,18 +5,15 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.plugin.java.JavaPlugin;
-
-import java.awt.*;
 
 public class ChatListener implements Listener
 {
     SocketWorker socket = null;
 
-    public ChatListener(JavaPlugin plugin)
+    public ChatListener()
     {
         SimpleMessenger.getPlugin(SimpleMessenger.class).getLogger().info("Initializing listener.");
-        socket = new SocketWorker("60.10.33.200", 33663);
+        socket = new SocketWorker("127.0.0.1", 33663);
         Handshake("85662271");
 
         Thread thread = new Thread(this::OnReceive);

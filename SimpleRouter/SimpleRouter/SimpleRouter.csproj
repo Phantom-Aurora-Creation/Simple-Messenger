@@ -37,7 +37,7 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RUL">
-      <HintPath>..\..\..\RUL\RUL\bin\Debug\RUL.dll</HintPath>
+      <HintPath>..\..\..\..\RUL\RUL\bin\Debug\RUL.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
