@@ -1,0 +1,5 @@
+# This is Simple Messenger configuration file
+
+ServerIP: 127.0.0.1
+ServerPort: 33663
+Password: '85662271'

@@ -1,4 +1,4 @@
-package com.romonov.spigotplugin.simplemessenger;
+package com.romonov.spongeplugin.simplemessenger;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -16,7 +16,7 @@ public class AccessCodeWorker
 
     public static String Md5(String text)
     {
-        String encodeStr=DigestUtils.md5Hex(text);
+        String encodeStr= DigestUtils.md5Hex(text);
         return encodeStr;
     }
 }

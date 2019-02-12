@@ -1,6 +1,5 @@
 package com.romonov.spigotplugin.simplemessenger;
 
-import com.google.gson.Gson;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,8 +12,8 @@ public class ChatListener implements Listener
     public ChatListener()
     {
         SimpleMessenger.getPlugin(SimpleMessenger.class).getLogger().info("Initializing listener.");
-        socket = new SocketWorker("127.0.0.1", 33663);
-        Handshake("85662271");
+        socket = new SocketWorker(ConfigWorker.ServerIP, ConfigWorker.ServerPort);
+        Handshake(ConfigWorker.Password);
 
         Thread thread = new Thread(this::OnReceive);
         thread.start();
@@ -22,7 +21,7 @@ public class ChatListener implements Listener
 
     private void Handshake(String password)
     {
-        String handshake = ProtocolWorker.Build(Enum.Type.handshake, "Romonov", "Romonov", AccessCodeWorker.GetAccessCode(password));
+        String handshake = ProtocolWorker.Build(Enum.Type.handshake, Bukkit.getServer().getServerId(), Bukkit.getServer().getName(), AccessCodeWorker.GetAccessCode(password));
         socket.Send(handshake);
     }
 
@@ -34,20 +33,7 @@ public class ChatListener implements Listener
 
             if (msg != "")
             {
-                Gson gson = new Gson();
-                Message message = gson.fromJson(msg.trim(), Message.class);
-                switch (message.Type)
-                {
-                    case msg:
-                        Bukkit.getServer().broadcastMessage("[" + message.From+ "]" + message.Name + ": " + message.Msg);
-                        break;
-                    case img:
-                        break;
-                    case control:
-                    case error:
-                    default:
-                        continue;
-                }
+                MessageHandler.Handle(msg);
             }
             else
             {

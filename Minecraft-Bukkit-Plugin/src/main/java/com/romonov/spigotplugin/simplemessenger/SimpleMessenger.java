@@ -5,14 +5,20 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class SimpleMessenger extends JavaPlugin
 {
+
+    private ChatListener chatListener = null;
+
     @Override
     public void onEnable()
     {
         // Plugin startup logic
         getLogger().info("Simple messenger enabled!");
 
+        saveDefaultConfig();
+        ConfigWorker configWorker = new ConfigWorker(this);
+
         PluginManager pluginManager = getServer().getPluginManager();
-        ChatListener chatListener = new ChatListener();
+        chatListener = new ChatListener();
         pluginManager.registerEvents(chatListener, this);
     }
 
@@ -20,6 +26,8 @@ public final class SimpleMessenger extends JavaPlugin
     public void onDisable()
     {
         // Plugin shutdown logic
+        saveConfig();
+        chatListener.socket.Close();
         getLogger().info("Simple messenger disabled!");
     }
 }
