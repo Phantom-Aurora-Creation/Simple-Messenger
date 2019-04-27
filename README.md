@@ -15,7 +15,7 @@
 
 ### 开发者 
 * 酷Q插件: [ENDsoft233](https://r-ay.cn/ "前往ENDsoft233的个人站点")
-* Bukkit服务端插件: [LittleC](https://xiaoc.ml/ "前往小C的站点")
+* Bukkit服务端插件: [LittleC](https://ltlec.cn/ "前往小C的站点")
 * Sponge服务端插件: [Romonov](https://www.romonov.com/ "前往浅墨小站")
 * MC Forge MOD: 暂无
 
