@@ -1,7 +1,7 @@
 # 森破信使 
 [![poweredby](https://s.r-ay.cn/svg.php?color=FF69B4&title=提供支持&content=幻创Indev)](https://pacin.dev "前往幻创Indev官网")  
 
-让QQ群和MC服务器或玩家的客户端之间消息互通。**支持原版服务端**！  
+让QQ群和MC服务器或玩家的客户端之间消息互通。**原版服务端可用**、**跨平台可用**！  
 
 ### 介绍 
 这个项目包含**酷Q插件**、**MC服务端插件**和**配合MC原版服务端的独立软件**。 
@@ -29,5 +29,5 @@
 ### Changelog
 ```
 Author: Romonov
-Date: 2019.4.28 13:22
+Date: 2019.4.28 13:26
 ```
